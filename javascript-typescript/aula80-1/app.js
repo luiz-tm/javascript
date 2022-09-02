@@ -8,16 +8,20 @@ class Pessoa {
     falar() {
         console.log(`${this.nome} está falando.`)
     }
+}
 
-    comer() {
-        console.log(`${this.nome} está comendo.`)
-    }
-
-    beber() {
-        console.log(`${this.nome} está bebendo.`)
-    }
+function Pessoa2(noe, sobrenome)
+{
+    this.nome = noe;
+    this.sobrenome = sobrenome;
+}
+Pessoa2.prototype.falar = function() {
+    console.log(`${this.nome} está falando.`)
 }
 
 const p1 = new Pessoa('Luiz', 'Henrique')
+const p2 = new Pessoa2('Luiz', 'Henrique')
+
 
 p1.falar();
+p2.falar()
