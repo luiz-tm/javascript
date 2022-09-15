@@ -17,7 +17,7 @@ export default function geraSenha(qtd, maiuscula, minuscula, numero, simbolo) {
         simbolo && senhaArray.push(geraSimbolo())
     }
 
-    console.log(senhaArray.join('').slice(0,qtd))
+    return senhaArray.join('').slice(0,qtd)
 }
 
 geraSenha(10, true, true, true)

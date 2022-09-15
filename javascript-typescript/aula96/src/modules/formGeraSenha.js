@@ -1,2 +1,0 @@
-import geraSenha from './geradores'
-
