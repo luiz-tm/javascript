@@ -10,7 +10,7 @@ const { middlewareGlobal } = require('./src/middlewares/middleware')
 const mongoose = require('mongoose')
 mongoose.connect(process.env.CONNECTIONSTRING, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
-        app.emit('pronto')
+        app.emit('ready')
     })
     .catch(e => console.log(e))
 
@@ -23,7 +23,7 @@ app.use(express.urlencoded( { extended: true } ))
 app.use(express.static('./public'))
 
 const sessionOptions = session({
-    secret: 'asdadsadsada',
+    secret: 'secret',
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     resave: false,
     saveUninitialized: false,
@@ -38,12 +38,11 @@ app.use(flash())
 app.set('views', path.resolve(__dirname, 'src', 'views'))
 app.set('view engine', 'ejs')
 
-// Nossos próprios middlewares
 app.use(middlewareGlobal)
 
 app.use(routes)
 
-app.on('pronto', () => {
+app.on('ready', () => {
     app.listen(3000, () => {
         console.log('Acessar http://localhost:3000')
         console.log('Servidor executando na porta 3000')
